@@ -7,6 +7,7 @@ class Transaction;
 
 class Account
 {
+    uint m_id;
     std::string m_name;
     float m_amount{0.0F};
     std::vector<std::shared_ptr<Transaction>> m_debits{};
@@ -15,6 +16,9 @@ class Account
   public:
     Account() = default;
     explicit Account(std::string_view);
+
+    uint Id() const;
+    void Id(const uint);
 
     [[nodiscard]] std::string_view name() const;
     void name(std::string_view);

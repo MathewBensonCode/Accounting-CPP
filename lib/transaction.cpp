@@ -1,5 +1,13 @@
 #include "transaction.hpp"
 
+uint Transaction::Id() const{
+    return m_id;
+}
+
+void Transaction::Id(uint id){
+    m_id = id;
+}
+
 double Transaction::Amount() const{
     return m_amount;
 }

@@ -1,5 +1,15 @@
 #include "account.hpp"
 
+uint Account::Id() const
+{
+    return m_id;
+}
+
+void Account::Id(const uint id)
+{
+    m_id = id;
+}
+
 std::string_view Account::name() const
 {
     return m_name;

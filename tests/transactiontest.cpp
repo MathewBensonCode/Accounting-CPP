@@ -7,6 +7,24 @@ TEST_CASE("Has Transaction Class")
 {
     Transaction transaction{};
 
+    SECTION("That has an Id Property")
+    {
+        uint val = transaction.Id();
+
+        SECTION("That has an initial zero value")
+        {
+            REQUIRE(0 == val);
+
+            SECTION("And can be set")
+            {
+                const uint newval{5};
+                transaction.Id(newval);
+
+                REQUIRE(newval == transaction.Id());
+            }
+        }
+    }
+
     SECTION("That has an Double Amount Property")
     {
         double val = transaction.Amount();
