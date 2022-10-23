@@ -5,10 +5,15 @@ find_package(Catch2 REQUIRED)
 
 cmake_minimum_required (VERSION 3.8)
 # Add source to this project's executable.
-add_executable (accountswithcatchtests "accounttest.cpp" "transactiontest.cpp" "catchmain.cpp")
+add_executable (accountswithcatchtests 
+    "catchmain.cpp"
+    "accounttest.cpp"
+    "transactiontest.cpp"
+    "sourcedocumenttest.cpp"
+    )
 
-target_include_directories(accountswithcatch PRIVATE accountswithcatch::accountswithcatch)
+target_include_directories(accountswithcatch PRIVATE accountswithcatch)
 
-target_link_libraries(accountswithcatchtests PRIVATE accountswithcatch::accountswithcatch Catch2::Catch2)
+target_link_libraries(accountswithcatchtests PRIVATE accountswithcatch Catch2::Catch2)
 
 enable_testing()

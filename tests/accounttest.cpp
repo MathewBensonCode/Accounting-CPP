@@ -71,7 +71,7 @@ TEST_CASE("Account Class")
         const std::vector<std::shared_ptr<Transaction>> &collection = account.Debits();
 
         SECTION("That is initially empty")
-        REQUIRE(0 == account.Debits().size());
+        REQUIRE(account.Debits().empty());
     }
 
     SECTION("Has a Collection of Credit Transaction Relational Properties")
@@ -79,6 +79,6 @@ TEST_CASE("Account Class")
         const std::vector<std::shared_ptr<Transaction>> &collection = account.Credits();
 
         SECTION("That is initially empty")
-        REQUIRE(0 == account.Credits().size());
+        REQUIRE(account.Credits().empty());
     }
 }
