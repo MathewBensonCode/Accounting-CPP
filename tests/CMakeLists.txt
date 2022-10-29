@@ -10,6 +10,7 @@ add_executable (accountswithcatchtests
     "accounttest.cpp"
     "transactiontest.cpp"
     "sourcedocumenttest.cpp"
+    "businessentitytest.cpp"
     )
 
 target_include_directories(accountswithcatch PRIVATE accountswithcatch)

@@ -1,6 +1,9 @@
 #include <chrono>
+#include <vector>
 #include <catch2/catch.hpp>
 #include "sourcedocument.hpp"
+#include "transaction.hpp"
+#include "businessentity.hpp"
 
 TEST_CASE("Has Source Document Class")
 {
@@ -42,13 +45,39 @@ TEST_CASE("Has Source Document Class")
         }
     }
 
-    SECTION("Has a Collection of Debit Transaction Relational Properties")
+    SECTION("That Has a Property with a Collection of Transaction Relational Properties")
     {
         const std::vector<std::shared_ptr<Transaction>> &collection = sourcedocument.Transactions();
 
         SECTION("That is initially empty")
         {
-            REQUIRE(sourcedocument.Transactions().empty());
+            REQUIRE(collection.empty());
+
+            SECTION("And can be set")
+            {
+                std::vector<std::shared_ptr<Transaction>> newcollection{std::make_shared<Transaction>(), std::make_shared<Transaction>()};
+                sourcedocument.Transactions(newcollection);
+            }
         }
+
+    }
+
+    SECTION("That has a property of Business Entity")
+    {
+        const std::weak_ptr<BusinessEntity> &businessentity = sourcedocument.Business_Entity();
+
+        SECTION("That is initially null")
+        {
+            REQUIRE(businessentity.lock().get() == nullptr);
+
+            SECTION("And can be set")
+            {
+                std::shared_ptr<BusinessEntity> newentity = std::make_shared<BusinessEntity>();
+                sourcedocument.Business_Entity(newentity);
+
+                REQUIRE(businessentity.lock().get() == newentity.get());
+            }
+       }
+        
     }
 }
