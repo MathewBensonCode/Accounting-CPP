@@ -30,14 +30,14 @@ list(APPEND systemheaders
  endforeach()
 
 add_library (accountswithcatch 
-    entitybase.cpp 
-    account.cpp
-    transaction.cpp
-    sourcedocument.cpp
-    businessentity.cpp
+    src/entitybase.cpp 
+    src/account.cpp
+    src/transaction.cpp
+    src/sourcedocument.cpp
+    src/businessentity.cpp
     )
 
-target_include_directories(accountswithcatch INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(accountswithcatch PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_compile_features(accountswithcatch PUBLIC cxx_std_20)
 
