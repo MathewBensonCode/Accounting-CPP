@@ -1,7 +1,11 @@
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
+
 #include <string_view>
 #include <string>
 #include <memory>
 #include <vector>
+
 #include "entitybase.hpp"
 
 class Transaction;
@@ -26,3 +30,5 @@ class Account : public EntityBase
     [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Debits() const;
     [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Credits() const;
 };
+
+#endif

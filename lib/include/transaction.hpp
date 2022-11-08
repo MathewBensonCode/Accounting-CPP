@@ -1,3 +1,6 @@
+#ifndef TRANSACTION_H
+#define TRANSACTION_H
+
 #include <memory>
 #include "entitybase.hpp"
 
@@ -18,3 +21,5 @@ class Transaction : public EntityBase
     [[nodiscard]] const std::weak_ptr<Account> &CreditAccount() const;
     void CreditAccount(const std::weak_ptr<Account> &);
 };
+
+#endif

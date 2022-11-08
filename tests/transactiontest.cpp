@@ -27,7 +27,7 @@ TEST_CASE("Has Transaction Class")
 
     SECTION("That has an Double Amount Property")
     {
-        double val = transaction.Amount();
+        const double val = transaction.Amount();
 
         SECTION("That is initially zero")
         {
