@@ -57,6 +57,7 @@ TEST_CASE("Has Source Document Class")
             {
                 std::vector<std::shared_ptr<Transaction>> newcollection{std::make_shared<Transaction>(), std::make_shared<Transaction>()};
                 sourcedocument.Transactions(newcollection);
+                REQUIRE(newcollection == sourcedocument.Transactions());
             }
         }
 
@@ -64,18 +65,18 @@ TEST_CASE("Has Source Document Class")
 
     SECTION("That has a property of Business Entity")
     {
-        const std::weak_ptr<BusinessEntity> &businessentity = sourcedocument.Business_Entity();
+        const std::weak_ptr<BusinessEntity> &business_entity = sourcedocument.Business_Entity();
 
         SECTION("That is initially null")
         {
-            REQUIRE(businessentity.lock().get() == nullptr);
+            REQUIRE(business_entity.lock().get() == nullptr);
 
             SECTION("And can be set")
             {
-                std::shared_ptr<BusinessEntity> newentity = std::make_shared<BusinessEntity>();
-                sourcedocument.Business_Entity(newentity);
+                std::shared_ptr<BusinessEntity> new_business_entity = std::make_shared<BusinessEntity>();
+                sourcedocument.Business_Entity(new_business_entity);
 
-                REQUIRE(businessentity.lock().get() == newentity.get());
+                REQUIRE(business_entity.lock().get() == new_business_entity.get());
             }
        }
         

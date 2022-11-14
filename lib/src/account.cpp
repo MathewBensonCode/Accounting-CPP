@@ -1,26 +1,31 @@
 #include "account.hpp"
 
-std::string_view Account::name() const
+unsigned int Account::Id() const
+{
+    return m_id;
+}
+
+void Account::Id(const unsigned int newid)
+{
+    m_id = newid;
+}
+
+std::string_view Account::Name() const
 {
     return m_name;
 };
 
-void Account::name(std::string_view name)
+void Account::Name(std::string_view name)
 {
     m_name = name;
 }
 
-Account::Account(std::string_view name)
-  : m_name(name)
-{
-}
-
-float Account::amount() const
+float Account::Amount() const
 {
     return m_amount;
 }
 
-void Account::amount(float newamount)
+void Account::Amount(float newamount)
 {
     m_amount = newamount;
 }

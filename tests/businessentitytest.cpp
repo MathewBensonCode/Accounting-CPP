@@ -1,18 +1,16 @@
 #include <catch2/catch.hpp>
 #include "businessentity.hpp"
 
-
 TEST_CASE("Has Business Entity Class")
 {
     BusinessEntity businessentity{};
 
     SECTION("That has an Id Property")
     {
-        uint val = businessentity.Id();
 
         SECTION("That has an initial zero value")
         {
-            REQUIRE(0 == val);
+            REQUIRE(0 == businessentity.Id());
 
             SECTION("And can be set")
             {
@@ -26,19 +24,19 @@ TEST_CASE("Has Business Entity Class")
     
     SECTION("That has a Name Property")
     {
-        const std::string& name = businessentity.Name();
+        const std::string_view business_entity_name = businessentity.Name();
 
         SECTION("That has an initial blank string value")
         {
-            REQUIRE(name.empty());
+            REQUIRE(business_entity_name.empty());
 
             SECTION("And that can be set")
             {
-                const std::string newname{"new name"};
+                const std::string new_business_entity_name{"new name"};
 
-                businessentity.Name(newname);
+                businessentity.Name(new_business_entity_name);
 
-                REQUIRE(newname == businessentity.Name());
+                REQUIRE(new_business_entity_name == businessentity.Name());
             }
         }
     }

@@ -2,10 +2,10 @@
 #define SOURCE_DOCUMENT_H
 
 #include <chrono>
-#include "entitybase.hpp"
 #include <vector>
 #include <memory>
 
+#include <odb/core.hxx>
 
 using myclock = std::chrono::system_clock;
 using timepoint = std::chrono::time_point<myclock>;
@@ -13,21 +13,41 @@ using timepoint = std::chrono::time_point<myclock>;
 class Transaction;
 class BusinessEntity;
 
-class SourceDocument : public EntityBase
+class SourceDocument
 {
+    unsigned int m_id{};
     timepoint m_date{};
     std::vector<std::shared_ptr<Transaction>> m_transactions{};
     std::weak_ptr<BusinessEntity> m_businessentity{};
 
+    friend odb::access;
+
   public:
+
+    [[nodiscard]] unsigned int Id() const;
+    void Id(unsigned int);
+
+    [[nodiscard]] std::string_view Name() const;
+    void Name(std::string_view);
+
     [[nodiscard]] timepoint Date() const;
     void Date(const timepoint &);
 
-    [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Transactions()const;
-    void Transactions(std::vector<std::shared_ptr<Transaction>>& );
+    [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Transactions() const;
+    void Transactions(const std::vector<std::shared_ptr<Transaction>> &);
 
     [[nodiscard]] const std::weak_ptr<BusinessEntity> &Business_Entity() const;
-    void Business_Entity(const std::weak_ptr<BusinessEntity>&);
+    void Business_Entity(const std::weak_ptr<BusinessEntity> &);
 };
+
+#ifdef ODB_COMPILER
+#include "transaction.hpp"
+#include "businessentity.hpp"
+#pragma db object(SourceDocument) table("SourceDocuments")
+#pragma db member(SourceDocument::m_id) id
+#pragma db member(SourceDocument::m_businessentity) not_null inverse(m_sourcedocuments)
+#pragma db member(SourceDocument::m_date)  type("INT")
+
+#endif
 
 #endif

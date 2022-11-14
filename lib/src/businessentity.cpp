@@ -1,6 +1,17 @@
 #include "businessentity.hpp"
+#include <string_view>
 
-const std::string& BusinessEntity::Name(){
+unsigned int BusinessEntity::Id() const
+{
+    return m_id;
+}
+
+void BusinessEntity::Id(unsigned int newid)
+{
+    m_id = newid;
+}
+
+[[nodiscard]] std::string_view BusinessEntity::Name() const{
     return m_name;
 }
 

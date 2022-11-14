@@ -6,29 +6,42 @@
 #include <memory>
 #include <vector>
 
-#include "entitybase.hpp"
+#include <odb/core.hxx>
 
 class Transaction;
 
-class Account : public EntityBase
+class Account 
 {
+    unsigned int m_id{};
     std::string m_name;
     float m_amount{ 0.0F };
     std::vector<std::shared_ptr<Transaction>> m_debits{};
     std::vector<std::shared_ptr<Transaction>> m_credits{};
 
+    friend odb::access;
+
   public:
-    Account() = default;
-    explicit Account(std::string_view);
 
-    [[nodiscard]] std::string_view name() const;
-    void name(std::string_view);
+    [[nodiscard]] unsigned int Id() const;
+    void Id(unsigned int);
 
-    [[nodiscard]] float amount() const;
-    void amount(float);
+    [[nodiscard]] std::string_view Name() const;
+    void Name(std::string_view);
+
+    [[nodiscard]] float Amount() const;
+    void Amount(float);
 
     [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Debits() const;
     [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Credits() const;
+
 };
+
+#ifdef ODB_COMPILER
+#include "transaction.hpp"
+#pragma db object(Account) table("Accounts")
+#pragma db member(Account::m_id) id
+
+#endif
+
 
 #endif

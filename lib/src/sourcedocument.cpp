@@ -1,5 +1,13 @@
 #include "sourcedocument.hpp"
 
+unsigned int SourceDocument::Id() const{
+    return m_id;
+}
+
+void SourceDocument::Id(unsigned int newid){
+    m_id = newid;
+}
+
 timepoint SourceDocument::Date() const{
     return m_date;
 }
@@ -12,7 +20,8 @@ const std::vector<std::shared_ptr<Transaction>> &SourceDocument::Transactions()c
     return m_transactions;
 }
 
-void SourceDocument::Transactions(std::vector<std::shared_ptr<Transaction>> &collection){
+void SourceDocument::Transactions(const std::vector<std::shared_ptr<Transaction>> &collection){
+    m_transactions = collection;
 }
 
 const std::weak_ptr<BusinessEntity> & SourceDocument::Business_Entity()const{
