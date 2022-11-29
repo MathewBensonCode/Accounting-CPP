@@ -15,8 +15,8 @@ class Account
     unsigned int m_id{};
     std::string m_name;
     float m_amount{ 0.0F };
-    std::vector<std::shared_ptr<Transaction>> m_debits{};
-    std::vector<std::shared_ptr<Transaction>> m_credits{};
+    std::vector<std::weak_ptr<Transaction>> m_debits{};
+    std::vector<std::weak_ptr<Transaction>> m_credits{};
 
     friend odb::access;
 
@@ -31,8 +31,8 @@ class Account
     [[nodiscard]] float Amount() const;
     void Amount(float);
 
-    [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Debits() const;
-    [[nodiscard]] const std::vector<std::shared_ptr<Transaction>> &Credits() const;
+    [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Debits() const;
+    [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Credits() const;
 
 };
 
@@ -40,6 +40,8 @@ class Account
 #include "transaction.hpp"
 #pragma db object(Account) table("Accounts")
 #pragma db member(Account::m_id) id
+#pragma db member(Account::m_debits) inverse(m_debitaccount)
+#pragma db member(Account::m_credits) inverse(m_creditaccount)
 
 #endif
 

@@ -40,4 +40,13 @@ TEST_CASE("Has Business Entity Class")
             }
         }
     }
+
+    SECTION("Should Have A Collection of SourceDocuments Related Property")
+    {
+        const std::vector<std::weak_ptr<SourceDocument>> &sourcedocuments = businessentity.SourceDocuments();
+
+        SECTION("That is initially empty"){
+            REQUIRE(sourcedocuments.empty());
+        }
+    }
 }

@@ -14,7 +14,7 @@ class BusinessEntity
 {
     unsigned int m_id{};
     std::string m_name;
-    std::vector<std::shared_ptr<SourceDocument>> m_sourcedocuments;
+    std::vector<std::weak_ptr<SourceDocument>> m_sourcedocuments;
 
     friend odb::access;
 
@@ -24,12 +24,16 @@ class BusinessEntity
 
     [[nodiscard]] std::string_view Name() const;
     void Name(std::string_view);
+
+    [[nodiscard]] const std::vector<std::weak_ptr<SourceDocument>> &SourceDocuments() const;
 };
+
 #ifdef ODB_COMPILER
 
 #include "sourcedocument.hpp"
 #pragma db object(BusinessEntity) table("BusinessEntities")
 #pragma db member(BusinessEntity::m_id) id
+#pragma db member(BusinessEntity::m_sourcedocuments) inverse(m_businessentity)
 
 #endif
 

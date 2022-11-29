@@ -16,18 +16,18 @@ void Transaction::Amount(const double amount){
     m_amount = amount;
 }
 
-const std::weak_ptr<Account> &Transaction::DebitAccount() const{
-    return m_debitAccount;
+const std::shared_ptr<Account> &Transaction::DebitAccount() const{
+    return m_debitaccount;
 }
 
-void Transaction::DebitAccount(const std::weak_ptr<Account> &debitAccount){
-    m_debitAccount = debitAccount; 
+void Transaction::DebitAccount(const std::shared_ptr<Account> &debitAccount){
+    m_debitaccount = debitAccount; 
 }
 
-const std::weak_ptr<Account> &Transaction::CreditAccount() const{
-    return m_creditAccount;
+const std::shared_ptr<Account> &Transaction::CreditAccount() const{
+    return m_creditaccount;
 }
 
-void Transaction::CreditAccount(const std::weak_ptr<Account> &creditAccount){
-    m_creditAccount = creditAccount; 
+void Transaction::CreditAccount(const std::shared_ptr<Account> &creditAccount){
+    m_creditaccount = creditAccount; 
 }

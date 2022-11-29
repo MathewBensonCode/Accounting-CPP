@@ -30,12 +30,12 @@ void Account::Amount(float newamount)
     m_amount = newamount;
 }
 
-const std::vector<std::shared_ptr<Transaction>> &Account::Debits() const
+const std::vector<std::weak_ptr<Transaction>> &Account::Debits() const
 {
     return m_debits;
 }
 
-const std::vector<std::shared_ptr<Transaction>> &Account::Credits() const
+const std::vector<std::weak_ptr<Transaction>> &Account::Credits() const
 {
     return m_credits;
 }

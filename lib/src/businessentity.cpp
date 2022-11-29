@@ -18,3 +18,8 @@ void BusinessEntity::Id(unsigned int newid)
 void BusinessEntity::Name(const std::string_view f_name){
     m_name = f_name;
 }
+
+[[nodiscard]] const std::vector<std::weak_ptr<SourceDocument>> &BusinessEntity::SourceDocuments() const
+{
+    return m_sourcedocuments;
+}

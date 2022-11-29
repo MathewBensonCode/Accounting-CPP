@@ -45,11 +45,11 @@ TEST_CASE("Has Transaction Class")
 
     SECTION("That has a Debit Account Property")
     {
-        const std::weak_ptr<Account> &value = transaction.DebitAccount();
+        const std::shared_ptr<Account> &value = transaction.DebitAccount();
 
         SECTION("That is initially null")
         {
-            REQUIRE(value.lock() == nullptr);
+            REQUIRE(value == nullptr);
         }
 
         SECTION("And can be set")
@@ -57,17 +57,17 @@ TEST_CASE("Has Transaction Class")
             auto newptr = std::make_shared<Account>();
             transaction.DebitAccount(newptr);
 
-            REQUIRE(newptr == value.lock());
+            REQUIRE(newptr == value);
         }
     }
 
     SECTION("That has a Credit Account Property")
     {
-        const std::weak_ptr<Account> &value = transaction.CreditAccount();
+        const std::shared_ptr<Account> &value = transaction.CreditAccount();
 
         SECTION("That is initially null")
         {
-            REQUIRE(value.lock() == nullptr);
+            REQUIRE(value == nullptr);
         }
 
         SECTION("And can be set")
@@ -75,7 +75,7 @@ TEST_CASE("Has Transaction Class")
             auto newptr = std::make_shared<Account>();
             transaction.CreditAccount(newptr);
 
-            REQUIRE(newptr == value.lock());
+            REQUIRE(newptr == value);
         }
     }
 
@@ -87,13 +87,13 @@ TEST_CASE("Has Transaction Class")
         SECTION("When Debit is set")
         {
             transaction.DebitAccount(new_debitaccount);
-            REQUIRE(transaction.DebitAccount().lock() != transaction.CreditAccount().lock());
+            REQUIRE(transaction.DebitAccount() != transaction.CreditAccount());
         }
 
         SECTION("When Credit is set")
         {
             transaction.CreditAccount(new_creditaccount);
-            REQUIRE(transaction.DebitAccount().lock() != transaction.CreditAccount().lock());
+            REQUIRE(transaction.DebitAccount() != transaction.CreditAccount());
         }
     }
 }

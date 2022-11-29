@@ -61,7 +61,7 @@ TEST_CASE("Account Class")
 
     SECTION("Has a Collection of Debit Transaction Relational Properties")
     {
-        const std::vector<std::shared_ptr<Transaction>> &account_debit_transactions = account.Debits();
+        const std::vector<std::weak_ptr<Transaction>> &account_debit_transactions = account.Debits();
 
         SECTION("That is initially empty")
         {
@@ -71,7 +71,7 @@ TEST_CASE("Account Class")
 
     SECTION("Has a Collection of Credit Transaction Relational Properties")
     {
-        const std::vector<std::shared_ptr<Transaction>> &account_credit_transactions = account.Credits();
+        const std::vector<std::weak_ptr<Transaction>> &account_credit_transactions = account.Credits();
 
         SECTION("That is initially empty")
         {

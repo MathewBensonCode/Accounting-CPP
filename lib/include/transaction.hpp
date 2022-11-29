@@ -11,8 +11,8 @@ class Transaction
 {
     unsigned int m_id{};
     double m_amount{};
-    std::weak_ptr<Account> m_debitAccount{};
-    std::weak_ptr<Account> m_creditAccount{};
+    std::shared_ptr<Account> m_debitaccount{};
+    std::shared_ptr<Account> m_creditaccount{};
 
     friend odb::access;
 
@@ -23,11 +23,11 @@ class Transaction
     [[nodiscard]] double Amount() const;
     void Amount(double);
 
-    [[nodiscard]] const std::weak_ptr<Account> &DebitAccount() const;
-    void DebitAccount(const std::weak_ptr<Account> &);
+    [[nodiscard]] const std::shared_ptr<Account> &DebitAccount() const;
+    void DebitAccount(const std::shared_ptr<Account> &);
 
-    [[nodiscard]] const std::weak_ptr<Account> &CreditAccount() const;
-    void CreditAccount(const std::weak_ptr<Account> &);
+    [[nodiscard]] const std::shared_ptr<Account> &CreditAccount() const;
+    void CreditAccount(const std::shared_ptr<Account> &);
 };
 
 
@@ -35,9 +35,8 @@ class Transaction
 #include "account.hpp"
 #pragma db object(Transaction) table("Transactions")
 #pragma db member(Transaction::m_id) id
-#pragma db member(Transaction::m_debitAccount) not_null inverse(m_debits)
-#pragma db member(Transaction::m_creditAccount) not_null inverse(m_credits)
-
+#pragma db member(Transaction::m_debitaccount) not_null column("DebitAccountId")
+#pragma db member(Transaction::m_creditaccount) not_null column("CreditAccountId")
 
 #endif
 
