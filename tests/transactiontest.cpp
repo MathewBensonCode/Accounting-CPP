@@ -1,4 +1,5 @@
 #include <catch2/catch.hpp>
+#include "sourcedocument.hpp"
 #include "transaction.hpp"
 #include "account.hpp"
 #include <memory>
@@ -94,6 +95,16 @@ TEST_CASE("Has Transaction Class")
         {
             transaction.CreditAccount(new_creditaccount);
             REQUIRE(transaction.DebitAccount() != transaction.CreditAccount());
+        }
+    }
+
+    SECTION("Should Have a SourceDocument Property")
+    {
+        const std::shared_ptr<SourceDocument> &sourcedocument = transaction.Sourcedocument();
+
+        SECTION("That is initially Null")
+        {
+            REQUIRE(nullptr == sourcedocument);
         }
     }
 }

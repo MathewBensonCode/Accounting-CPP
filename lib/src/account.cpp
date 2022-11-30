@@ -20,16 +20,6 @@ void Account::Name(std::string_view name)
     m_name = name;
 }
 
-float Account::Amount() const
-{
-    return m_amount;
-}
-
-void Account::Amount(float newamount)
-{
-    m_amount = newamount;
-}
-
 const std::vector<std::weak_ptr<Transaction>> &Account::Debits() const
 {
     return m_debits;

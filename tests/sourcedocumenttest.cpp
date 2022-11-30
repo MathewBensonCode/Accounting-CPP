@@ -47,20 +47,12 @@ TEST_CASE("Has Source Document Class")
 
     SECTION("That Has a Property with a Collection of Transaction Relational Properties")
     {
-        const std::vector<std::shared_ptr<Transaction>> &collection = sourcedocument.Transactions();
+        const std::vector<std::weak_ptr<Transaction>> &transactioncollection = sourcedocument.Transactions();
 
         SECTION("That is initially empty")
         {
-            REQUIRE(collection.empty());
-
-            SECTION("And can be set")
-            {
-                std::vector<std::shared_ptr<Transaction>> newcollection{std::make_shared<Transaction>(), std::make_shared<Transaction>()};
-                sourcedocument.Transactions(newcollection);
-                REQUIRE(newcollection == sourcedocument.Transactions());
-            }
+            REQUIRE(transactioncollection.empty());
         }
-
     }
 
     SECTION("That has a property of Business Entity")
@@ -78,7 +70,6 @@ TEST_CASE("Has Source Document Class")
 
                 REQUIRE(business_entity.lock().get() == new_business_entity.get());
             }
-       }
-        
+        }
     }
 }

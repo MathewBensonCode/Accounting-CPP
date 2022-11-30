@@ -31,3 +31,7 @@ const std::shared_ptr<Account> &Transaction::CreditAccount() const{
 void Transaction::CreditAccount(const std::shared_ptr<Account> &creditAccount){
     m_creditaccount = creditAccount; 
 }
+
+const std::shared_ptr<SourceDocument> &Transaction::Sourcedocument() const{
+    return m_sourcedocument;
+}

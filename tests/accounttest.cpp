@@ -41,24 +41,6 @@ TEST_CASE("Account Class")
         }
     }
 
-    SECTION("has Amount property")
-    {
-        auto initialamount{ 0.0F };
-        const auto account_amount = account.Amount();
-
-        SECTION("with initial value of 0.0")
-        {
-            REQUIRE(initialamount == account_amount);
-
-            SECTION("that Can be modified")
-            {
-                const auto newamount{ 12.0F };
-                account.Amount(newamount);
-                REQUIRE(newamount == account.Amount());
-            }
-        }
-    }
-
     SECTION("Has a Collection of Debit Transaction Relational Properties")
     {
         const std::vector<std::weak_ptr<Transaction>> &account_debit_transactions = account.Debits();

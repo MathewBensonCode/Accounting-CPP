@@ -6,6 +6,7 @@
 #include <odb/core.hxx>
 
 class Account;
+class SourceDocument;
 
 class Transaction
 {
@@ -13,6 +14,7 @@ class Transaction
     double m_amount{};
     std::shared_ptr<Account> m_debitaccount{};
     std::shared_ptr<Account> m_creditaccount{};
+    std::shared_ptr<SourceDocument> m_sourcedocument{};
 
     friend odb::access;
 
@@ -28,16 +30,19 @@ class Transaction
 
     [[nodiscard]] const std::shared_ptr<Account> &CreditAccount() const;
     void CreditAccount(const std::shared_ptr<Account> &);
+
+    [[nodiscard]] const std::shared_ptr<SourceDocument> &Sourcedocument() const;
 };
 
 
 #ifdef ODB_COMPILER
 #include "account.hpp"
+#include "sourcedocument.hpp"
 #pragma db object(Transaction) table("Transactions")
 #pragma db member(Transaction::m_id) id
 #pragma db member(Transaction::m_debitaccount) not_null column("DebitAccountId")
 #pragma db member(Transaction::m_creditaccount) not_null column("CreditAccountId")
-
+#pragma db member(Transaction::m_sourcedocument) not_null column("SourceDocumentId")
 #endif
 
 #endif

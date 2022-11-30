@@ -28,9 +28,6 @@ class Account
     [[nodiscard]] std::string_view Name() const;
     void Name(std::string_view);
 
-    [[nodiscard]] float Amount() const;
-    void Amount(float);
-
     [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Debits() const;
     [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Credits() const;
 
