@@ -1,6 +1,6 @@
 # CMakeList.txt : CMake project for accountswithcatch, include source and define project specific logic here.
 #
-find_package(Catch2 REQUIRED)
+find_package(Catch2)
 
 if(NOT Catch2_FOUND)
 
