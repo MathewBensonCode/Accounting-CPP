@@ -20,7 +20,7 @@ odb_compile(
   GENERATE_QUERY
   GENERATE_SESSION
   STANDARD
-  c++11)
+  c++17)
 
 add_library(accountswithcatch)
 
