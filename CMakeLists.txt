@@ -53,4 +53,4 @@ add_subdirectory(lib)
 add_subdirectory(tests)
 
 file(CREATE_LINK ${CMAKE_BINARY_DIR}/compile_commands.json
-     ${CMAKE_SOURCE_DIR}/compile_commands.json)
+    ${CMAKE_SOURCE_DIR}/compile_commands.json COPY_ON_ERROR SYMBOLIC)

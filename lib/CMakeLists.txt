@@ -34,8 +34,6 @@ target_include_directories(
   accountswithcatch PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
                            ${ODB_INCLUDE_DIRECTORIES})
 
-target_compile_options(accountswithcatch PUBLIC -fmodules-ts)
-
 target_link_libraries(accountswithcatch PRIVATE project_warnings project_options)
 
 add_library(accountsodb)
