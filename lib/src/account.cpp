@@ -13,7 +13,7 @@ void Account::Id(const unsigned int newid)
 std::string_view Account::Name() const
 {
     return m_name;
-};
+}
 
 void Account::Name(std::string_view name)
 {
