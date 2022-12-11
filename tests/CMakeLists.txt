@@ -24,7 +24,7 @@ add_executable(
   "sourcedocumenttest.cpp"
   "businessentitytest.cpp")
 
-target_include_directories(accountswithcatchtests PRIVATE accountswithcatch)
+target_include_directories(accountswithcatchtests PRIVATE accountswithcatch Catch2::Catch2)
 
 target_link_libraries(
   accountswithcatchtests
