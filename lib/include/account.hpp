@@ -10,7 +10,7 @@
 
 class Transaction;
 
-class Account 
+class Account
 {
     unsigned int m_id{};
     std::string m_name;
@@ -21,16 +21,14 @@ class Account
     friend odb::access;
 
   public:
-
     [[nodiscard]] unsigned int Id() const;
     void Id(unsigned int);
 
-    [[nodiscard]] const std::string & Name() const;
+    [[nodiscard]] const std::string &Name() const;
     void Name(const std::string &);
 
     [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Debits() const;
     [[nodiscard]] const std::vector<std::weak_ptr<Transaction>> &Credits() const;
-
 };
 
 #ifdef ODB_COMPILER
@@ -41,6 +39,5 @@ class Account
 #pragma db member(Account::m_credits) inverse(m_creditaccount)
 
 #endif
-
 
 #endif
