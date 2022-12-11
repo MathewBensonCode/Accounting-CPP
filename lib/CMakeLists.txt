@@ -38,11 +38,11 @@ target_link_libraries(accountswithcatch PRIVATE project_warnings project_options
 
 add_library(accountsodb)
 
-target_sources(
-  accountsodb
-  PRIVATE ${accounts_odb_sources}
-  PRIVATE FILE_SET odb_headers TYPE HEADERS FILES ${accounts_odb_headers})
-
-target_include_directories(
-  accountsodb PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/odb_gen
-                     ${CMAKE_CURRENT_SOURCE_DIR}/include)
+#target_sources(
+#  accountsodb
+#  PRIVATE ${accounts_odb_sources}
+#  PRIVATE FILE_SET odb_headers TYPE HEADERS FILES ${accounts_odb_headers})
+#
+#target_include_directories(
+#  accountsodb PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/odb_gen
+#                     ${CMAKE_CURRENT_SOURCE_DIR}/include)
