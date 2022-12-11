@@ -10,12 +10,12 @@ void Account::Id(const unsigned int newid)
     m_id = newid;
 }
 
-std::string_view Account::Name() const
+const std::string & Account::Name() const
 {
     return m_name;
 }
 
-void Account::Name(std::string_view name)
+void Account::Name(const std::string & name)
 {
     m_name = name;
 }

@@ -22,8 +22,8 @@ class BusinessEntity
     [[nodiscard]] unsigned int Id() const;
     void Id(unsigned int);
 
-    [[nodiscard]] std::string_view Name() const;
-    void Name(std::string_view);
+    [[nodiscard]] const std::string & Name() const;
+    void Name(const std::string &);
 
     [[nodiscard]] const std::vector<std::weak_ptr<SourceDocument>> &SourceDocuments() const;
 };
