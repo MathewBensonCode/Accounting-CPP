@@ -36,7 +36,7 @@ target_include_directories(
 
 target_link_libraries(accountswithcatch PRIVATE project_warnings project_options)
 
-add_library(accountsodb)
+#add_library(accountsodb)
 
 #target_sources(
 #  accountsodb
