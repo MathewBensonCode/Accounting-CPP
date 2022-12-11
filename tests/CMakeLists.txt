@@ -14,21 +14,35 @@ if(NOT Catch2_FOUND)
 
   FetchContent_MakeAvailable(Catch2)
 
+  add_executable(
+    accountswithcatchtests
+    "accounttest.cpp"
+    "transactiontest.cpp"
+    "sourcedocumenttest.cpp"
+    "businessentitytest.cpp")
+
+  target_link_libraries(
+    accountswithcatchtests
+    PRIVATE accountswithcatch
+    Catch2::Catch2WithMain
+            project_warnings
+            project_options)
+else()
+
+  add_executable(
+    accountswithcatchtests
+    "catchmain.cpp"
+    "accounttest.cpp"
+    "transactiontest.cpp"
+    "sourcedocumenttest.cpp"
+    "businessentitytest.cpp")
+
+  target_include_directories(accountswithcatchtests PRIVATE accountswithcatch Catch2::Catch2)
+
+  target_link_libraries(
+    accountswithcatchtests
+    PRIVATE accountswithcatch
+            Catch2::Catch2
+            project_warnings
+            project_options)
 endif()
-
-add_executable(
-  accountswithcatchtests
-  "catchmain.cpp"
-  "accounttest.cpp"
-  "transactiontest.cpp"
-  "sourcedocumenttest.cpp"
-  "businessentitytest.cpp")
-
-target_include_directories(accountswithcatchtests PRIVATE accountswithcatch Catch2::Catch2)
-
-target_link_libraries(
-  accountswithcatchtests
-  PRIVATE accountswithcatch
-          Catch2::Catch2
-          project_warnings
-          project_options)
