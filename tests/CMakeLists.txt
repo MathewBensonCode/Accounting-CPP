@@ -1,33 +1,6 @@
 # CMakeList.txt : CMake project for accountswithcatch, include source and define project specific logic here.
 #
-find_package(Catch2)
-
-if(NOT Catch2_FOUND)
-
-  include(FetchContent)
-
-  FetchContent_Declare(
-    Catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.0.1 # or a later release
-  )
-
-  FetchContent_MakeAvailable(Catch2)
-
-  add_executable(
-    accountswithcatchtests
-    "accounttest.cpp"
-    "transactiontest.cpp"
-    "sourcedocumenttest.cpp"
-    "businessentitytest.cpp")
-
-  target_link_libraries(
-    accountswithcatchtests
-    PRIVATE accountswithcatch
-    Catch2::Catch2WithMain
-            project_warnings
-            project_options)
-else()
+find_package(Catch2 REQUIRED)
 
   add_executable(
     accountswithcatchtests
@@ -45,4 +18,9 @@ else()
             Catch2::Catch2
             project_warnings
             project_options)
+
+  include(CTest)
+  include(Catch)
+  catch_discover_tests(accountswithcatchtests)
+
 endif()
