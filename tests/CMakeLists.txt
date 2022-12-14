@@ -22,5 +22,3 @@ find_package(Catch2 REQUIRED)
   include(CTest)
   include(Catch)
   catch_discover_tests(accountswithcatchtests)
-
-endif()
