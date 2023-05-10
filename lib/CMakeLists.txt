@@ -20,14 +20,14 @@ odb_compile(
   GENERATE_QUERY
   GENERATE_SESSION
   STANDARD
-  c++14)
+  c++20)
 
 add_library(accountswithcatch)
 
 target_sources(
   accountswithcatch
   PRIVATE src/account.cpp src/transaction.cpp src/sourcedocument.cpp
-          src/businessentity.cpp
+          src/businessentity.cpp src/repository.cpp
   PUBLIC FILE_SET headers TYPE HEADERS FILES ${accounts_odb_headers})
 
 target_include_directories(
@@ -36,13 +36,13 @@ target_include_directories(
 
 target_link_libraries(accountswithcatch PRIVATE project_warnings project_options)
 
-#add_library(accountsodb)
+add_library(accountsodb)
 
-#target_sources(
-#  accountsodb
-#  PRIVATE ${accounts_odb_sources}
-#  PRIVATE FILE_SET odb_headers TYPE HEADERS FILES ${accounts_odb_headers})
-#
-#target_include_directories(
-#  accountsodb PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/odb_gen
-#                     ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_sources(
+  accountsodb
+  PRIVATE ${accounts_odb_sources}
+  PRIVATE FILE_SET odb_headers TYPE HEADERS FILES ${accounts_odb_headers})
+
+target_include_directories(
+  accountsodb PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/odb_gen
+                     ${CMAKE_CURRENT_SOURCE_DIR}/include)

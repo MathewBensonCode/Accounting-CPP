@@ -1,14 +1,14 @@
-#include <catch2/catch.hpp>
+#include <catch2/catch_template_test_macros.hpp>
 #include "account.hpp"
 #include <memory>
+#include <cstdint>
 
-TEST_CASE("Account Class")
-{
-    Account account{};
+TEMPLATE_TEST_CASE("Account Class", "Accounts", Account) {
+    TestType account{};
 
     SECTION("that has an Id Property")
     {
-        const uint val = account.Id();
+        const std::size_t val = account.Id();
 
         SECTION("that is initially zero")
         {

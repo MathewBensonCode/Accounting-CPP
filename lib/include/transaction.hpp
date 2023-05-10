@@ -38,7 +38,7 @@ class Transaction
 #ifdef ODB_COMPILER
 #include "account.hpp"
 #include "sourcedocument.hpp"
-#pragma db object(Transaction) table("Transactions")
+#pragma db object(Transaction) table("Transactions") pointer(std::shared_ptr)
 #pragma db member(Transaction::m_id) id
 #pragma db member(Transaction::m_debitaccount) not_null column("DebitAccountId")
 #pragma db member(Transaction::m_creditaccount) not_null column("CreditAccountId")

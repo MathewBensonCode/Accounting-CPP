@@ -7,8 +7,7 @@
 
 #include <odb/core.hxx>
 
-using myclock = std::chrono::system_clock;
-using timepoint = std::chrono::time_point<myclock>;
+using timepoint = std::chrono::sys_seconds;
 
 class Transaction;
 class BusinessEntity;
@@ -16,7 +15,7 @@ class BusinessEntity;
 class SourceDocument
 {
     unsigned int m_id{};
-    timepoint m_date{};
+    long long m_date{};
     std::vector<std::weak_ptr<Transaction>> m_transactions{};
     std::weak_ptr<BusinessEntity> m_businessentity{};
 
@@ -43,10 +42,10 @@ class SourceDocument
 #ifdef ODB_COMPILER
 #include "transaction.hpp"
 #include "businessentity.hpp"
-#pragma db object(SourceDocument) table("SourceDocuments")
+#pragma db object(SourceDocument) table("SourceDocuments") pointer(std::shared_ptr)
 #pragma db member(SourceDocument::m_id) id
 #pragma db member(SourceDocument::m_businessentity) not_null
-#pragma db member(SourceDocument::m_date)  type("INT")
+#pragma db member(SourceDocument::m_date) type("INT")
 #pragma db member(SourceDocument::m_transactions) inverse(m_sourcedocument)
 
 #endif

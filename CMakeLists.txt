@@ -48,6 +48,10 @@ enable_doxygen()
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
 
+# include code to create target links
+
+include(cmake/CreateTargetLink.cmake)
+
 add_subdirectory(lib)
 
 add_subdirectory(tests)

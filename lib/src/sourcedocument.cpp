@@ -1,4 +1,7 @@
 #include "sourcedocument.hpp"
+#include <chrono>
+
+using timepoint = std::chrono::sys_seconds;
 
 unsigned int SourceDocument::Id() const
 {
@@ -12,12 +15,12 @@ void SourceDocument::Id(unsigned int newid)
 
 timepoint SourceDocument::Date() const
 {
-    return m_date;
+    return timepoint(std::chrono::seconds(m_date));
 }
 
 void SourceDocument::Date(const timepoint &time)
 {
-    m_date = time;
+    m_date = time.time_since_epoch().count();
 }
 
 const std::vector<std::weak_ptr<Transaction>> &SourceDocument::Transactions() const

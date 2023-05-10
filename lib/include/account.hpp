@@ -33,7 +33,7 @@ class Account
 
 #ifdef ODB_COMPILER
 #include "transaction.hpp"
-#pragma db object(Account) table("Accounts")
+#pragma db object(Account) table("Accounts") pointer(std::shared_ptr)
 #pragma db member(Account::m_id) id
 #pragma db member(Account::m_debits) inverse(m_debitaccount)
 #pragma db member(Account::m_credits) inverse(m_creditaccount)

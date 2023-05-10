@@ -31,7 +31,7 @@ class BusinessEntity
 #ifdef ODB_COMPILER
 
 #include "sourcedocument.hpp"
-#pragma db object(BusinessEntity) table("BusinessEntities")
+#pragma db object(BusinessEntity) table("BusinessEntities") pointer(std::shared_ptr)
 #pragma db member(BusinessEntity::m_id) id
 #pragma db member(BusinessEntity::m_sourcedocuments) inverse(m_businessentity)
 
