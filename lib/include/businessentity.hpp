@@ -2,7 +2,6 @@
 #define BUSINESS_ENTITY_H
 
 #include <string>
-#include <string_view>
 #include <memory>
 #include <vector>
 

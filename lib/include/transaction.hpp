@@ -12,9 +12,9 @@ class Transaction
 {
     unsigned int m_id{};
     double m_amount{};
-    std::shared_ptr<Account> m_debitaccount{};
-    std::shared_ptr<Account> m_creditaccount{};
-    std::shared_ptr<SourceDocument> m_sourcedocument{};
+    std::shared_ptr<Account> m_debitaccount;
+    std::shared_ptr<Account> m_creditaccount;
+    std::shared_ptr<SourceDocument> m_sourcedocument;
 
     friend odb::access;
 

@@ -1,6 +1,6 @@
 # CMakeList.txt : CMake project for accountswithcatch, include source and define project specific logic here.
 #
-find_package(Catch2)
+find_package(Catch2 3 REQUIRED)
 
 add_executable(
   accountswithcatchtests
@@ -12,7 +12,10 @@ add_executable(
 
 target_link_libraries(
   accountswithcatchtests
-  PRIVATE accountswithcatch project_warnings project_options
+  PRIVATE accountswithcatch
   PUBLIC Catch2::Catch2WithMain)
 
 createtargetlink(accountswithcatchtests)
+
+include(Catch)
+catch_discover_tests(accountswithcatchtests)

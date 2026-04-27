@@ -16,8 +16,8 @@ class SourceDocument
 {
     unsigned int m_id{};
     long long m_date{};
-    std::vector<std::weak_ptr<Transaction>> m_transactions{};
-    std::weak_ptr<BusinessEntity> m_businessentity{};
+    std::vector<std::weak_ptr<Transaction>> m_transactions;
+    std::weak_ptr<BusinessEntity> m_businessentity;
 
     friend odb::access;
 

@@ -1,7 +1,6 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
-#include <string_view>
 #include <string>
 #include <memory>
 #include <vector>
@@ -15,8 +14,8 @@ class Account
     unsigned int m_id{};
     std::string m_name;
     float m_amount{ 0.0F };
-    std::vector<std::weak_ptr<Transaction>> m_debits{};
-    std::vector<std::weak_ptr<Transaction>> m_credits{};
+    std::vector<std::weak_ptr<Transaction>> m_debits;
+    std::vector<std::weak_ptr<Transaction>> m_credits;
 
     friend odb::access;
 
